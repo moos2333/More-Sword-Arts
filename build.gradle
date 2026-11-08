@@ -86,7 +86,7 @@ minecraft {
     useDependencyAccessTransformers.set(propertyBool('use_dependency_at_files'))
 
     username.set(propertyString('minecraft_username'))
-    
+
     // Add any additional tweaker classes here
     extraTweakClasses.addAll(propertyStringList('extra_tweak_classes'))
 
@@ -104,9 +104,9 @@ minecraft {
             Properties props = new Properties().tap { it.load(file('tags.properties').newInputStream()); it }
             if (!props.isEmpty()) {
                 injectedTags.set(props.collectEntries { k, v ->
-                        def interpolated = interpolate(v)
-                        if (interpolated == null || interpolated.isEmpty()) throw new GradleException("Empty tag value found for key: $k")
-                        [(k): interpolated]
+                    def interpolated = interpolate(v)
+                    if (interpolated == null || interpolated.isEmpty()) throw new GradleException("Empty tag value found for key: $k")
+                    [(k): interpolated]
                 })
             }
         }
@@ -156,6 +156,10 @@ dependencies {
         testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
+
+    // 按照参考代码的格式，使用原生 files() 引入本地 libs 依赖
+    compileOnly files('libs/DynamicSwordSkills-1.12.2-6.2.1.jar', 'libs/SwordSkillsApi-1.12.2-1.5.1.jar')
+    runtimeOnly files('libs/DynamicSwordSkills-1.12.2-6.2.1.jar', 'libs/SwordSkillsApi-1.12.2-1.5.1.jar')
 }
 
 apply from: 'gradle/scripts/dependencies.gradle'
@@ -221,7 +225,7 @@ processResources {
                 'mixin_package': propertyString('mixin_package')
         )
     }
-    
+
     if (propertyBool('use_access_transformer')) {
         rename '(.+_at.cfg)', 'META-INF/$1'
     }
