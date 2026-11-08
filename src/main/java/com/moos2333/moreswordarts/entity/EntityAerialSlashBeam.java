@@ -22,7 +22,7 @@ public class EntityAerialSlashBeam extends EntityThrowable {
         super(world, player);
         this.damage = damage;
         this.isMagic = isMagic;
-        this.lifespan = isMagic ? 60 : 40;
+        this.lifespan = isMagic ? 40 : 20;
         this.setSize(0.5F, 0.5F);
     }
 
@@ -52,7 +52,7 @@ public class EntityAerialSlashBeam extends EntityThrowable {
 
                     DamageSource source = DamageUtils.causeIndirectComboDamage(this, owner);
                     if (this.isMagic) {
-                        source.setMagicDamage();
+                        source.setMagicDamage().setDamageBypassesArmor();
                     }
 
                     target.attackEntityFrom(source, this.damage);

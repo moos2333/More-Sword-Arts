@@ -131,9 +131,7 @@ public class AerialSlash extends SkillActive {
 
             if (isDualSword) {
                 this.secondBeamTimer = 3;
-            }
-
-            if (isShield) {
+            } else if (isShield) {
                 player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, this.hoverTimer, 1, false, false));
             }
         }
@@ -167,10 +165,7 @@ public class AerialSlash extends SkillActive {
                         float playerDmg = (float) player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
                         float finalDamage = (playerDmg * multiplier) + flat;
 
-                        ItemStack offhand = player.getHeldItemOffhand();
-                        boolean isMagic = !offhand.isEmpty() && offhand.getItem().getRegistryName() != null && offhand.getItem().getRegistryName().equals(MAGIC_DEVICE_ID);
-
-                        this.spawnBeam(world, player, finalDamage, isMagic, 0.0F);
+                        this.spawnBeam(world, player, finalDamage, false, 0.0F);
                     }
                     this.triggerVisualFeedback(world, player);
                 }
