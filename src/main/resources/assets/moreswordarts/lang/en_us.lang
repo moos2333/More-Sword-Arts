@@ -2,11 +2,11 @@
 itemGroup.moreswordarts=More Sword Arts
 
 # Item Names
-item.moreswordarts.skill_orb.name=Skill Orb of %s
+item.moreswordarts.skill_orb.name=Skill Orb (%s)
 
 # Skill: Aerial Slash
 skill.dss.aerial_slash.name=Aerial Slash
-skill.dss.aerial_slash.activation=[Sword] [Targeted]\nSneak and right-click while in mid-air.
-skill.dss.aerial_slash.tooltip=Slash out sword beams from mid-air and hover.
-skill.dss.aerial_slash.description=Toy with your enemies in the palm of your hand by unleashing sharp sword beams from mid-air.\n\nUpon activation, you hover in the air and can move freely.\n\nDepending on the item held in the offhand, the effect changes:\n- Magic Device: Deals magic damage.\n- Sword: Fires two precise sword beams sequentially.\n- Shield: Grants Resistance II while hovering.\n\nSword beams dissipate upon hitting a target and do not pierce.
+skill.dss.aerial_slash.activation=[Sword] [Targeted]\nSneak and jump, then right-click while in mid-air.
+skill.dss.aerial_slash.tooltip=Slash out sword beams from mid-air and hover briefly.
+skill.dss.aerial_slash.description=Toy with your enemies in the palm of your hand by unleashing sharp sword beams from mid-air.\n\nUpon activation, you hover in the air and can move freely.\n\nDepending on the item held in the offhand, the effect changes:\nMagic Device: Deals magic damage and increases beam range.\nSword: Fires two precise sword beams sequentially.\nShield: Grants Resistance II while hovering.
 skill.dss.aerial_slash.info.damage=Damage: %d%% + %d

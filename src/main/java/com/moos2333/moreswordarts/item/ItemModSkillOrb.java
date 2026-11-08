@@ -1,5 +1,6 @@
 package com.moos2333.moreswordarts.item;
 
+import dynamicswordskills.api.IMetadataSkillItem;
 import dynamicswordskills.api.ItemGrantSkill;
 import dynamicswordskills.api.SkillRegistry;
 import dynamicswordskills.skills.SkillBase;
@@ -12,7 +13,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemModSkillOrb extends ItemGrantSkill {
+public class ItemModSkillOrb extends ItemGrantSkill implements IMetadataSkillItem {
 
     public ItemModSkillOrb() {
         this.setMaxStackSize(16);
@@ -22,7 +23,17 @@ public class ItemModSkillOrb extends ItemGrantSkill {
 
     @Override
     public SkillBase getSkillToGrant(ItemStack stack) {
-        return SkillRegistry.getSkillById(stack.getMetadata());
+        return this.getSkillFromDamage(stack.getMetadata());
+    }
+
+    @Override
+    public SkillBase getSkillFromDamage(int damage) {
+        return SkillRegistry.getSkillById(damage);
+    }
+
+    @Override
+    public int getItemDamage(SkillBase skill) {
+        return skill != null ? skill.getId() : -1;
     }
 
     @Override

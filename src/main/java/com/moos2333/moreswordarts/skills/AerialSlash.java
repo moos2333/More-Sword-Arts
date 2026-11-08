@@ -64,6 +64,8 @@ public class AerialSlash extends SkillActive {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(List<String> desc, EntityPlayer player) {
+        desc.add(new TextComponentTranslation("skill.dss.aerial_slash.tooltip").getUnformattedText());
+
         float multiplier = ModConfig.aerialSlash.baseMultiplier + ModConfig.aerialSlash.perLevelMultiplier * this.level;
         float flat = ModConfig.aerialSlash.baseFlatDamage + ModConfig.aerialSlash.perLevelFlatDamage * this.level;
         desc.add(new TextComponentTranslation("skill.dss.aerial_slash.info.damage", (int)(multiplier * 100), (int)flat).getUnformattedText());

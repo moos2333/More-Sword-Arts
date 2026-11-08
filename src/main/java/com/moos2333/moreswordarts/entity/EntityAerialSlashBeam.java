@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 public class EntityAerialSlashBeam extends EntityThrowable {
     private float damage;
     private boolean isMagic;
+    private int lifespan;
 
     public EntityAerialSlashBeam(World world) {
         super(world);
@@ -21,14 +22,14 @@ public class EntityAerialSlashBeam extends EntityThrowable {
         super(world, player);
         this.damage = damage;
         this.isMagic = isMagic;
+        this.lifespan = isMagic ? 60 : 40;
         this.setSize(0.5F, 0.5F);
     }
 
     @Override
     public void onUpdate() {
         super.onUpdate();
-
-        if (!this.world.isRemote && this.ticksExisted > 40) {
+        if (!this.world.isRemote && this.ticksExisted > this.lifespan) {
             this.setDead();
         }
     }

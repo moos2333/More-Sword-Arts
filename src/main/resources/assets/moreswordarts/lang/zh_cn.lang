@@ -6,7 +6,7 @@ item.moreswordarts.skill_orb.name=%s技能球
 
 # Skill: Aerial Slash
 skill.dss.aerial_slash.name=空舞斩
-skill.dss.aerial_slash.activation=[剑] [锁定]\n潜行并在空中时，按下右键发动。
+skill.dss.aerial_slash.activation=[剑] [锁定]\n潜行跳跃后，在空中时按下右键发动。
 skill.dss.aerial_slash.tooltip=于半空斩出剑气，并短暂滞空。
-skill.dss.aerial_slash.description=将敌人玩弄于股掌之间，于半空斩出锐利的剑气。\n\n技能发动后，你将在空中短暂滞留，期间可自由移动。\n\n根据副手装备的不同，效果也会发生变化：\n- 魔导具：斩出蕴含魔力的剑气，造成魔法伤害。\n- 剑类武器：先后斩出两道精准的剑气。\n- 盾牌：滞空期间获得抗性提升效果。\n\n剑气击中目标后便会消散，不会穿透。
+skill.dss.aerial_slash.description=将敌人玩弄于股掌之间，于半空斩出锐利的剑气。\n\n技能发动后，你将在空中短暂滞留，期间可自由移动。\n\n根据副手装备的不同，效果也会发生变化：\n魔导具：斩出蕴含魔力的剑气，造成魔法伤害，且飞行距离更远。\n剑类武器：先后斩出两道精准的剑气。\n盾牌：滞空期间获得抗性提升效果。
 skill.dss.aerial_slash.info.damage=伤害：%d%% + %d
