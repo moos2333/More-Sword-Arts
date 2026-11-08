@@ -28,6 +28,7 @@ public class AerialSlash extends SkillActive {
 
     private int hoverTimer = 0;
     private int secondBeamTimer = 0;
+    private boolean usedInAir = false;
     private static final ResourceLocation MAGIC_DEVICE_ID = new ResourceLocation("casualtinkering", "magicdevice");
 
     public AerialSlash(String translationKey) {
@@ -38,6 +39,7 @@ public class AerialSlash extends SkillActive {
         super(skill);
         this.hoverTimer = skill.hoverTimer;
         this.secondBeamTimer = skill.secondBeamTimer;
+        this.usedInAir = skill.usedInAir;
     }
 
     @Override
@@ -84,13 +86,16 @@ public class AerialSlash extends SkillActive {
 
     @Override
     public boolean canUse(EntityPlayer player) {
-        return super.canUse(player) && !this.isActive() && PlayerUtils.isSwordOrProvider(player.getHeldItemMainhand(), this);
+        return super.canUse(player)
+                && !this.isActive()
+                && player.getCooledAttackStrength(0.5F) >= 0.9F
+                && PlayerUtils.isSwordOrProvider(player.getHeldItemMainhand(), this);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public boolean canExecute(EntityPlayer player) {
-        return !player.onGround && player.isSneaking() && this.canUse(player);
+        return !player.onGround && player.isSneaking() && !this.usedInAir && this.canUse(player);
     }
 
     @SideOnly(Side.CLIENT)
@@ -112,6 +117,7 @@ public class AerialSlash extends SkillActive {
     protected boolean onActivated(World world, EntityPlayer player) {
         this.hoverTimer = ModConfig.aerialSlash.hoverDuration;
         this.secondBeamTimer = 0;
+        this.usedInAir = true;
 
         player.motionY = 0;
         player.fallDistance = 0;
@@ -149,6 +155,10 @@ public class AerialSlash extends SkillActive {
 
     @Override
     public void onUpdate(EntityPlayer player) {
+        if (player.onGround) {
+            this.usedInAir = false;
+        }
+
         if (this.isActive()) {
             --this.hoverTimer;
             player.motionY = 0;
