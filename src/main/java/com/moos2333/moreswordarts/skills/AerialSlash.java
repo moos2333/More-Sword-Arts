@@ -3,6 +3,7 @@ package com.moos2333.moreswordarts.skills;
 import com.moos2333.moreswordarts.config.ModConfig;
 import com.moos2333.moreswordarts.entity.EntityAerialSlashBeam;
 import dynamicswordskills.api.SkillGroup;
+import dynamicswordskills.entity.DSSPlayerInfo;
 import dynamicswordskills.ref.ModSounds;
 import dynamicswordskills.skills.SkillActive;
 import dynamicswordskills.skills.Skills;
@@ -190,6 +191,7 @@ public class AerialSlash extends SkillActive {
     private void triggerVisualFeedback(World world, EntityPlayer player) {
         if (!world.isRemote) {
             PlayerUtils.playSoundAtEntity(world, player, ModSounds.WHOOSH, SoundCategory.PLAYERS, 0.6F, 0.8F);
+            DSSPlayerInfo.get(player).setAttackCooldown(10);
         }
         player.swingArm(EnumHand.MAIN_HAND);
         player.resetCooldown();
